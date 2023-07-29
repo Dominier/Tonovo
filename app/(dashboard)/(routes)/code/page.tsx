@@ -25,7 +25,9 @@ import { formSchema } from "./constants";
 
 const CodePage = () => {
     const router = useRouter();
-    const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]); // Connects Messages to OpenAI
+
+    // Connects Messages to OpenAI
+    const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -111,6 +113,7 @@ const CodePage = () => {
                     {messages.length === 0 && !isLoading && (
                         <Empty label="No conversation started." />
                     )}
+
                     {/* Displays messages */}
                     <div className="flex flex-col-reverse gap-y-4">
                         {messages.map((message) => (
@@ -122,6 +125,7 @@ const CodePage = () => {
                                     : "bg-muted" // AI Message
                                 )}
                             >
+                                {/* Formatting the AI's responses */}
                                 {message.role === "user" ? <UserAvator /> : <BotAvatar />}
                                 <ReactMarkdown
                                     components={{
@@ -131,7 +135,7 @@ const CodePage = () => {
                                                 <pre {...props} />
                                             </div>
                                         ),
-                                        code: ({node, ...props}) => (
+                                        code: ({node, ...props}) => ( // Any code mentioned will be formatted
                                             <code className="bg-black/10 rounded-lg p-1" 
                                             {...props}
                                             />
