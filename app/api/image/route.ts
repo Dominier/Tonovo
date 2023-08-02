@@ -1,4 +1,4 @@
-// Connection to OpenAI API for Conversation
+// Connection to OpenAI API for Image
 
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
