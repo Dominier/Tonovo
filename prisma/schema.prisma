@@ -1,3 +1,7 @@
+// Everytime you want to push something for prisma 
+// - must "npx prisma db push"
+// - "npx prisma generate"
+// - "npx prisma studio" to look at database
 generator client {
   provider = "prisma-client-js"
 }
@@ -6,4 +10,13 @@ datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
   relationMode = "prisma"
+}
+
+// Creating API model
+model UserApiLimit {
+  id String @id @default(cuid())
+  userId String @unique
+  count Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
