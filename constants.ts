@@ -1,1 +1,1 @@
-export const MAX_FREE_COUNTS = 5; // number of free member's usage
+export const MAX_FREE_COUNTS = 5; // number of free member's usage (Adjust if neccessary)
