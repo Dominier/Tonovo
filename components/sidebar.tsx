@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
+import { Code, ImageIcon, LayoutDashboard, MessageSquareDashed, Music, Settings, VideoIcon } from "lucide-react";
+
 
 import { cn } from "@/lib/utils";
-import { Code, ImageIcon, LayoutDashboard, MessageSquareDashed, Music, Settings, VideoIcon } from "lucide-react";
+import { FreeCounter } from "./freecounter";
 
 const monsterrat = Montserrat({ 
     weight: "600", 
@@ -56,10 +58,16 @@ const routes = [
         icon: Settings,
         href: "/settings",
     },
+];
 
-]
+// Allows sidebar to take in apiLimitCount
+interface SidebarProps {
+    apiLimitCount: number;
+}
 
-const Sidebar = () => {
+const Sidebar = ({
+    apiLimitCount = 0
+}: SidebarProps) => {
     const pathname = usePathname();
     return ( 
         <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -96,6 +104,10 @@ const Sidebar = () => {
                     ))}
                 </div>
             </div>
+            {/* Sends apiLimitCount to FreeCounter */}
+            <FreeCounter 
+                apiLimitCount={apiLimitCount}
+            /> 
         </div>
      );
 }
