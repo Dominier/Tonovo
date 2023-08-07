@@ -50,4 +50,25 @@ export const checkApiLimit = async () => {
         return false;   // meaning user cannot use the application until they pay
     }
 
+};
+
+// Fetch API Limit Count from PrismaDB
+export const getApiLimitCount = async () => {
+    const { userId } = auth();
+
+    if (!userId) {
+        return 0;
+    }
+
+    const userApiLimit = await prismadb.userApiLimit.findUnique({   // find APILimit from prismadb
+        where: {
+            userId
+        }
+    });
+
+    if (!userApiLimit) {    // User never ran a generation
+        return 0;
+    }
+
+    return userApiLimit.count;
 }
