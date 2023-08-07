@@ -1,3 +1,7 @@
+/* 
+    Fetch apiLimitCount from sidebar.tsx
+    Contains button, count, and progress count
+*/
 "use client";
 
 import { useEffect, useState } from "react";
@@ -40,7 +44,7 @@ export const FreeCounter = ({
                         value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
                         />
                     </div>
-                    <Button className="w-full">
+                    <Button className="w-full" variant="premium">
                         Upgrade
                         <Zap className="w-4 h-4 ml-2 fill-white" />
                     </Button>
