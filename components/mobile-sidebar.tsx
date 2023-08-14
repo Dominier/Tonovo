@@ -8,9 +8,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Sidebar from "./sidebar";
 import { useEffect, useState } from "react";
 
+interface MobileSidebarProps {
+    apiLimitCount: number;
+}
 
-const MobileSidebar = () => {
-    /* SIMPLE FIX FOR HYDRATION ERRORS LINE 14-22 */
+const MobileSidebar = ({
+    apiLimitCount
+}: MobileSidebarProps) => {
+
+    /* SIMPLE FIX FOR HYDRATION ERRORS LINE 20-28 */
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -29,7 +35,7 @@ const MobileSidebar = () => {
                 </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0">
-                <Sidebar />
+                <Sidebar apiLimitCount={apiLimitCount} />
             </SheetContent>
         </Sheet>
      );
