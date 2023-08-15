@@ -1,3 +1,6 @@
+// Displays user and bot's "avatars"
+// If there is no avatar for user, use their email image and name
+
 "use client"
 
 import * as React from "react"

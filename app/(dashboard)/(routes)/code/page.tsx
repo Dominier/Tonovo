@@ -20,10 +20,12 @@ import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { UserAvator } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 import { formSchema } from "./constants";
 
 const CodePage = () => {
+    const proModal = useProModal();
     const router = useRouter();
 
     // Connects Messages to OpenAI
@@ -55,7 +57,9 @@ const CodePage = () => {
 
             form.reset();
         } catch (error: any) {
-            // TODO: Open Pro Modal
+            if (error?.response?.status === 403) { // occurs if !freeTrial
+                proModal.onOpen();
+            }
             console.log(error);
         } finally {
             router.refresh();

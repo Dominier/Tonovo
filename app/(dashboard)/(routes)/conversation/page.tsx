@@ -20,8 +20,10 @@ import { UserAvator } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const ConversationPage = () => {
+    const proModal = useProModal();
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]); // Connects Messages to OpenAI
 
@@ -51,7 +53,9 @@ const ConversationPage = () => {
 
             form.reset();
         } catch (error: any) {
-            // TODO: Open Pro Modal
+            if (error?.response?.status === 403) { // occurs if !freeTrial
+                proModal.onOpen();
+            }
             console.log(error);
         } finally {
             router.refresh(); // rehydrates all server components, fetching the newest data
