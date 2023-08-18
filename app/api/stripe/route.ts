@@ -1,6 +1,7 @@
 /*
-Backend
+Backend: Stripe Checkout Page
 - Allows user to view their billing portal (Stripe)
+- User can subscribe for $20 USD, monthly recurrence.
 - After user is done, they will be transported back to /settings
 */
 import { auth, currentUser } from "@clerk/nextjs";
