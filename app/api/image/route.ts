@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
 
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
@@ -42,8 +43,9 @@ export async function POST(
         }
 
         const freeTrial = await checkApiLimit();    // retrieves free trial status
-        
-        if (!freeTrial) {   // checks for free trial; status of 403 will enable Pro-Modal
+        const isPro = await checkSubscription();    // retrieves pro status
+
+        if (!freeTrial && !isPro) {   // checks for free trial & pro status; status of 403 will enable Pro-Modal
             return new NextResponse("Free trial has expired.", { status: 403 });
         }
 
@@ -53,8 +55,10 @@ export async function POST(
             size: resolution,
         });
 
-        await increaseApiLimit();   // Increase API Limit counter after usage
-
+        if (!isPro) {
+            await increaseApiLimit();   // Increase API Limit counter after usage
+        }
+        
         return NextResponse.json(response.data.data);
     } catch (error) {
         console.log("[IMAGE_ERROR]", error)
