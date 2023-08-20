@@ -37,7 +37,7 @@ export async function GET() {
             return new NextResponse(JSON.stringify({ url: stripeSession.url }));
         }
 
-        // user checking out
+        // user checking out for the first time
         const stripeSession = await stripe.checkout.sessions.create({
             success_url: settingsUrl,
             cancel_url: settingsUrl,
