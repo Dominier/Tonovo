@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"; // package from npm
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 import { Heading } from "@/components/Heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -55,8 +56,9 @@ const ConversationPage = () => {
         } catch (error: any) {
             if (error?.response?.status === 403) { // occurs if !freeTrial
                 proModal.onOpen();
+            } else {
+                toast.error("Something went wrong");
             }
-            console.log(error);
         } finally {
             router.refresh(); // rehydrates all server components, fetching the newest data
         }

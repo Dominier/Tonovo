@@ -3,6 +3,7 @@
 import { Check, Code, ImageIcon, MessageSquare, Music, VideoIcon, Zap } from "lucide-react";
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 import { useProModal } from "@/hooks/use-pro-modal";
 import { 
@@ -59,11 +60,11 @@ export const ProModal = () => {
     const onSubscribe = async () => {
         try {
             setLoading(true);
-            const response = await axios.get("/api/stripe");  // directed to the Stripe API route.ts
+            const response = await axios.get("/api/stripe");    // directed to the Stripe API route.ts
             
             window.location.href = response.data.url;
         } catch (error) {
-            console.log(error, "STRIPE_CLIENT_ERROR");
+            toast.error("Something went wrong");    // Stripe Client Error
         } finally {
             setLoading(false);
         }
@@ -102,6 +103,7 @@ export const ProModal = () => {
                 </DialogHeader>
                 <DialogFooter>
                     <Button
+                        disabled={loading}
                         onClick={onSubscribe}
                         size="lg"
                         variant="premium"

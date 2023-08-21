@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"; // package from npm
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 
 import { Heading } from "@/components/Heading";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -52,8 +53,9 @@ const ImagePage = () => {
         } catch (error: any) {
             if (error?.response?.status === 403) { // occurs if !freeTrial
                 proModal.onOpen();
+            } else {
+                toast.error("Something went wrong");
             }
-            console.log(error);
         } finally {
             router.refresh();
         }
