@@ -54,7 +54,7 @@ const router = useRouter();
           Explore the power of AI firsthand
         </h2>
         <p className="text-muted-foreground font-light text-sm md:text-lg text-center"> 
-          Chat with Tonovo - Today's smartest AI
+          Chat with Tonovo - The coolest AI
         </p>
       </div>
       <div className="px-4 md:px-20 lg:px-32 space-y-4">
