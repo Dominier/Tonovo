@@ -1,3 +1,9 @@
+/* 
+    Top navigation bar for the landing page
+    - Logo
+    - Brand name
+    - Button that redirects to dashboard or sign-up
+*/
 "use client";
 
 import { Montserrat } from "next/font/google";
