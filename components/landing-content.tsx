@@ -1,3 +1,9 @@
+/*
+    Landing Page Contents
+    - Testimonials
+        - Each card maps to the array
+*/
+
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"

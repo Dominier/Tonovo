@@ -1,3 +1,11 @@
+/*
+    Landing Page Hero
+    - The main title
+    - The "Start Generation" button
+    - Disclaimer
+    - Description
+*/
+
 "use client"
 
 import { useAuth } from "@clerk/nextjs";
