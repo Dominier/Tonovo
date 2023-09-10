@@ -48,7 +48,7 @@ export const LandingHero = () => {
                 </Link>
             </div>
             <div className="text-zinc-400 text-xs md:text-sm font-normal">
-                No credit card required. AT THE MOMENT, DO NO ENTER CREDIT CARD!
+                No credit card required.
             </div>
         </div>
     )
