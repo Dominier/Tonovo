@@ -47,7 +47,7 @@ export async function POST(
         }
 
         const response = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
+            model: "gpt-4-1106-preview",
             messages: [instructionMessage, ...messages],
             temperature: 0.3,   // Changes the creativity of the AI, LOW TEMP FOR CODE
             // top_p: 0.1,      // Changes the sampling, LOW TOP_P FOR CODE (DO NOT UNCOMMENT UNLESS YOU COMMENT TEMP)
